@@ -1,7 +1,10 @@
 import './App.css';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
-import MainComponent from './components/main.component';
-import HeaderComponent from './components/header.component';
+import MainComponent from './server/main.component';
+import HeaderComponent from './game/header.component';
+import GameComponent from './game/game.component';
+import MapComponent from './game/map/map.component';
+
 
 
 function App() {
@@ -12,9 +15,8 @@ function App() {
                 <div className="container">
                     <Switch> 
                           <Route path = "/" exact component = {MainComponent}></Route>
-                          {/*<Route path = "/employees" component = {ListEmployeeComponent}></Route>*/}
-                          {/*<Route path = "/add-employee/:id" component = {CreateEmployeeComponent}></Route>*/}
-                          {/*<Route path = "/view-employee/:id" component = {ViewEmployeeComponent}></Route>*/}
+                          <Route path = "/game" exact component = {GameComponent}></Route>
+                          <Route path = "/map" exact component = {MapComponent}></Route>
                           {/* <Route path = "/update-employee/:id" component = {UpdateEmployeeComponent}></Route> */}
                     </Switch>
                 </div>

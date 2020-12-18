@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 
-class MapComponent extends Component {
+class GameComponent extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            id: this.props.match.params.id,
-            employee: {}
+            uuid: ""
         }
     }
 
@@ -43,4 +42,4 @@ class MapComponent extends Component {
     }
 }
 
-export default MapComponent
+export default GameComponent

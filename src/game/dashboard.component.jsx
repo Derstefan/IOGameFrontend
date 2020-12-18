@@ -1,58 +1,35 @@
 import React, { Component } from 'react'
-import MainService from '../services/main.service';
+import MainService from '../server/services/main.service';
 
-class MainComponent extends Component {
+class DashboardComponent extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
             inviteLink: "",
             numberOfGames: 0,
-            gameIds:[]
         }
         this.startnewGame=this.startnewGame.bind(this);
-        this.showGames=this.showGames.bind(this);
     }
 
     componentDidMount(){
-        const {gameIds} = this.state;
-        
         MainService.getNumberOfGames().then((res)=>{
             this.setState({numberOfGames: res.data});
-        },(error)=>{});
-        MainService.getGameIds().then((res)=>{
-            this.setState({gameIds: res.data});
-        },(error)=>{});
+        });
     }
 
 
     startnewGame(){
-        const {gameIds} = this.state;
+        const {inviteLink,numberOfGames} = this.state;
         MainService.startNewGame().then((res)=>{
             if(res.data!==""){
             this.setState({inviteLink: res.data});
             }
             MainService.getNumberOfGames().then((res)=>{
                 this.setState({numberOfGames: res.data});
-            },(error)=>{});
-            MainService.getGameIds().then((res)=>{
-                this.setState({gameIds: res.data});
-            },(error)=>{});
-        },(error)=>{});
-
-        
-        
+            });
+        });
     }
-
-    showGames(){
-        const{gameIds} = this.state;
-        console.log("show",gameIds);
-        if(gameIds.length>0){
-        return (gameIds.map((id)=>(<div><button type="button" className="btn btn-secondary mx-3">{id}</button></div>)));
-    }
-    return "";
-    }
-
 
     render() {
         const {inviteLink,numberOfGames} = this.state;
@@ -63,8 +40,7 @@ class MainComponent extends Component {
                 <div className="card">
                     InviteLink:<br></br>
                     <a href={inviteLink}>{inviteLink}</a>
-                    <br/><div className="row">{this.showGames()}</div>
-                    <br/>
+                    <br/><br/>
                     Number of Games {numberOfGames}
                 </div>
             </div>
@@ -72,4 +48,4 @@ class MainComponent extends Component {
     }
 }
 
-export default MainComponent
+export default DashboardComponent
