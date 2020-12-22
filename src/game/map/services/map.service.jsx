@@ -17,6 +17,18 @@ class MapService {
         return axios.get(API_BASE_URL + gameId + "/map/battles")
     }
 
+    getPlanetData(gameId,planetId){
+
+    }
+
+    getFleetData(gameId,FleetId){
+
+    }
+
+    getBattleData(gameId,BattleId){
+        
+    }
+
 
 }
 

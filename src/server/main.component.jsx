@@ -12,6 +12,7 @@ class MainComponent extends Component {
         }
         this.startnewGame=this.startnewGame.bind(this);
         this.showGames=this.showGames.bind(this);
+        this.showMap=this.showMap.bind(this);
     }
 
     componentDidMount(){
@@ -48,21 +49,25 @@ class MainComponent extends Component {
         const{gameIds} = this.state;
         console.log("show",gameIds);
         if(gameIds.length>0){
-        return (gameIds.map((id)=>(<div><button type="button" className="btn btn-secondary mx-3">{id}</button></div>)));
+        return (gameIds.map((id)=>(<div><button type="button" onClick={()=>this.showMap(id)} className="btn btn-secondary mx-3">{id}</button></div>)));
     }
     return "";
     }
 
+    showMap(id){
+        const {history} = this.props;
+        history.push(`/map/${id}`);
+    }
+
+
 
     render() {
-        const {inviteLink,numberOfGames} = this.state;
+        const {numberOfGames} = this.state;
         return (
             <div>
                 <br></br>
                 <button type="button" className="btn btn-secondary" onClick={this.startnewGame}>new Game</button>
                 <div className="card">
-                    InviteLink:<br></br>
-                    <a href={inviteLink}>{inviteLink}</a>
                     <br/><div className="row">{this.showGames()}</div>
                     <br/>
                     Number of Games {numberOfGames}
