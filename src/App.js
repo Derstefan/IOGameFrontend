@@ -15,8 +15,7 @@ function App() {
                 <div className="container">
                     <Switch> 
                           <Route path = "/" exact component = {MainComponent}></Route>
-                          <Route path = "/game" exact component = {GameComponent}></Route>
-                          <Route path = "/map" exact component = {MapComponent}></Route>
+                          <Route path = "/map/:id" exact component = {MapComponent}></Route>
                           {/* <Route path = "/update-employee/:id" component = {UpdateEmployeeComponent}></Route> */}
                     </Switch>
                 </div>
